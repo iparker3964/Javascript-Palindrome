@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Isaiah Parker</title>
+    <title>Javascript Palidrome: A Coding Project By Isaiah Parker</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +21,7 @@
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="img/download (3).jpg" class="d-inline-block align-text-top" width="30" height="24" alt="Brand logo"> APP NAME</a>
+        <a class="navbar-brand" href="#"><img src="img/download (3).jpg" class="d-inline-block align-text-top" width="30" height="24" alt="Brand logo"> Javascript Palidrome</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@
                     <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="https://github.com/iparker3964">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/iparker3964/Javascript-Palindrome">Git Repo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" target="_blank" href="#">About</a>
@@ -54,17 +54,68 @@
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-                        //Call Hello World
-                        function helloWorld(){
-                            alert("hello world!");
+                    //get our user input
+                    function getValue(){
+                        //make alert invisible
+                        document.getElementById("alert").classList.add("invisible");
+                        //get user string from the page
+                        let userString = document.getElementById("userString").value;
+                        //check if palindrome
+                        let resultObj = checkForPalidrome(userString)
+                        //display message to screen
+                        displayMsg(resultObj);
+                    }
+                    //check if palindrome
+                    function checkForPalidrome(userString){
+                        userString = userString.toLowerCase();
+                        //remove spaces and special chars
+                        let regex = /[^a-z0-9]/gi;
+                        userString = userString.replace(regex,"");
+                    
+                        let revString = [];
+                        let returnObj = {};
+                        for(let i = userString.length - 1; i >= 0; i--){
+                            revString+= userString[i];
                         }
+                    
+                        if(userString == revString){
+                            returnObj.msg="Well done! You entered a Palidrome!";
+                        }
+                        else{
+                            returnObj.msg = "Sorry! You did not enter a Palidrome!";
+                        }
+                        returnObj.reversed = revString;
+                        return returnObj;
+                    }
+                    //display a messasge to the screen
+                    function displayMsg(returnObj){
+                        document.getElementById("alertHeader").innerHTML = returnObj.msg;
+                        document.getElementById("msg").innerHTML = `Your phrase reversed is ${returnObj.reversed}`;
+                        //remove invisible class from alert
+                        document.getElementById("alert").classList.remove("invisible");
+                    }
                     </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p>The Code is structured in one function.</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with a message "hello world!".</p>
+                <p>The Code is structured in three functions.</p>
+                <h5>getValue</h5>
+                <p>Get element from page using document.getElementById and add invisible class to element if class is not currently added. Get user input from page and store into variable userString.
+                    Pass userString into function checkForPalidrome() and store the returning object into variable resultObj. Pass variable resultObj into function displayMsg() which will display message to screen.
+                </p>
+                <h5>checkForPalidrome</h5>
+                <p>
+                   Start with converting the variable userString to all lowercase characters and reassign result to userString. Use regular expression /[^a-z0-9]/gi to remove any charactors that is not lowercase a-z or 0-9. 
+                   Use replace funtion on string to replace any character that does not match our regular expression with a empty parentheses. Create a variable revString that holds an array and create a variable returnObj that will hold an object.
+                   A for loop is used to loop backwards through the string and store result into revString variable. If the reversed string is equivalent to the user input set property msg of object returnObj to "Well done! You entered a Palidrome!". 
+                   If the reversed string is not equivalent to the user input set property msg of object returnObj to "Sorry! You did not enter a Palidrome!". Set property reversed of object returnObj to reversed string value. Return reversed string value.
+                </p>
+                <h5>displayMsg</h5>
+                <p>
+                   Get element by id using document.getElementById("alertHeader") and set the innerHTML value to the value of returnObj object property msg.
+                   Get element by id using document.getElementById("msg") and set the innerHTML to `Your phrase reversed is ${returnObj.reversed}`. 
+                   Finally we remove the class invisible from element with id "alert" in order to display the message box.
+                </p>
             </div>
         </div>
     </div>
@@ -85,14 +136,14 @@
                           <a href="https://www.linkedin.com/in/isaiah-parker-6874b7159/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
                         </div>
                         <div class="col social">
-                            <a href="https://github.com/iparker3964" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                            <a href="https://github.com/iparker3964/Javascript-Palindrome" target="_blank"><i class="fab fa-github fa-2x"></i></a>
                         </div>
-                        <div class="col social">
+                        <!-- <div class="col social">
                             <a href="https://www.linkedin.com/in/isaiah-parker-6874b7159/" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
                         </div>
                         <div class="col social">
                             <a href="https://www.linkedin.com/in/isaiah-parker-6874b7159/" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
-                        </div>
+                        </div> -->
                     </div>
                </div>
            </div>
